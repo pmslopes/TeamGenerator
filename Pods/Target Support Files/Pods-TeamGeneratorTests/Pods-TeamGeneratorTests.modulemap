@@ -1,0 +1,6 @@
+framework module Pods_TeamGeneratorTests {
+  umbrella header "Pods-TeamGeneratorTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
