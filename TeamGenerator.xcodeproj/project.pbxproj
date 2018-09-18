@@ -13,10 +13,10 @@
 		B51941EA2141D44600FD569F /* PlayerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51941E82141D44600FD569F /* PlayerListViewController.swift */; };
 		B51941EB2141D44600FD569F /* PlayerListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51941E92141D44600FD569F /* PlayerListViewController.xib */; };
 		B51941F42141D4D500FD569F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51941F32141D4D500FD569F /* Player.swift */; };
-		B52146322143C48E005BC2FE /* PlayerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52146312143C48E005BC2FE /* PlayerListViewModel.swift */; };
-		B52146342143C51C005BC2FE /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52146332143C51C005BC2FE /* PlayerViewModel.swift */; };
-		B52146382143C773005BC2FE /* PlayerViewModelFromPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52146372143C773005BC2FE /* PlayerViewModelFromPlayer.swift */; };
-		B521463A2143D099005BC2FE /* PlayerListViewModelFromPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52146392143D099005BC2FE /* PlayerListViewModelFromPlayers.swift */; };
+		B52146382143C773005BC2FE /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52146372143C773005BC2FE /* PlayerViewModel.swift */; };
+		B521463A2143D099005BC2FE /* PlayerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52146392143D099005BC2FE /* PlayerListViewModel.swift */; };
+		B525DD2F2151A6AA001CF6AF /* PlayerListViewModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B525DD2E2151A6AA001CF6AF /* PlayerListViewModelUnitTests.swift */; };
+		B525DD312151A6B6001CF6AF /* PlayerViewModelUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B525DD302151A6B6001CF6AF /* PlayerViewModelUnitTests.swift */; };
 		B53B748221430F2A001F304E /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B748121430F2A001F304E /* Dynamic.swift */; };
 		B53B7489214310D4001F304E /* JSONDecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B7487214310D4001F304E /* JSONDecoderExtension.swift */; };
 		B53B748A214310D4001F304E /* JSONEncoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B7488214310D4001F304E /* JSONEncoderExtension.swift */; };
@@ -62,10 +62,10 @@
 		B51941E82141D44600FD569F /* PlayerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewController.swift; sourceTree = "<group>"; };
 		B51941E92141D44600FD569F /* PlayerListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerListViewController.xib; sourceTree = "<group>"; };
 		B51941F32141D4D500FD569F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		B52146312143C48E005BC2FE /* PlayerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModel.swift; sourceTree = "<group>"; };
-		B52146332143C51C005BC2FE /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		B52146372143C773005BC2FE /* PlayerViewModelFromPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModelFromPlayer.swift; sourceTree = "<group>"; };
-		B52146392143D099005BC2FE /* PlayerListViewModelFromPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModelFromPlayers.swift; sourceTree = "<group>"; };
+		B52146372143C773005BC2FE /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		B52146392143D099005BC2FE /* PlayerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModel.swift; sourceTree = "<group>"; };
+		B525DD2E2151A6AA001CF6AF /* PlayerListViewModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModelUnitTests.swift; sourceTree = "<group>"; };
+		B525DD302151A6B6001CF6AF /* PlayerViewModelUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModelUnitTests.swift; sourceTree = "<group>"; };
 		B53B748121430F2A001F304E /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		B53B7487214310D4001F304E /* JSONDecoderExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtension.swift; sourceTree = "<group>"; };
 		B53B7488214310D4001F304E /* JSONEncoderExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEncoderExtension.swift; sourceTree = "<group>"; };
@@ -175,6 +175,8 @@
 		B521462F2143C1D1005BC2FE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B525DD2E2151A6AA001CF6AF /* PlayerListViewModelUnitTests.swift */,
+				B525DD302151A6B6001CF6AF /* PlayerViewModelUnitTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -200,10 +202,8 @@
 		B52146362143C55B005BC2FE /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				B52146312143C48E005BC2FE /* PlayerListViewModel.swift */,
-				B52146392143D099005BC2FE /* PlayerListViewModelFromPlayers.swift */,
-				B52146332143C51C005BC2FE /* PlayerViewModel.swift */,
-				B52146372143C773005BC2FE /* PlayerViewModelFromPlayer.swift */,
+				B52146392143D099005BC2FE /* PlayerListViewModel.swift */,
+				B52146372143C773005BC2FE /* PlayerViewModel.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -361,6 +361,7 @@
 					};
 					B59F57E92141C5320061BC48 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = B59F57D32141C5300061BC48;
 					};
 					B59F57F42141C5320061BC48 = {
@@ -482,18 +483,16 @@
 			files = (
 				B56077D32143DF4B00E7394E /* UIViewExtension.swift in Sources */,
 				B53B7489214310D4001F304E /* JSONDecoderExtension.swift in Sources */,
-				B52146342143C51C005BC2FE /* PlayerViewModel.swift in Sources */,
 				B59F57D82141C5300061BC48 /* AppDelegate.swift in Sources */,
-				B52146322143C48E005BC2FE /* PlayerListViewModel.swift in Sources */,
 				B53B748C21431171001F304E /* PlayerLibrary.swift in Sources */,
 				B51941F42141D4D500FD569F /* Player.swift in Sources */,
 				B56077CE2143DE7400E7394E /* PlayerTableViewCell.swift in Sources */,
 				B53B748221430F2A001F304E /* Dynamic.swift in Sources */,
 				B53B748E214311E2001F304E /* DatabasePlayerLibrary.swift in Sources */,
-				B521463A2143D099005BC2FE /* PlayerListViewModelFromPlayers.swift in Sources */,
+				B521463A2143D099005BC2FE /* PlayerListViewModel.swift in Sources */,
 				B53B748A214310D4001F304E /* JSONEncoderExtension.swift in Sources */,
 				B51941EA2141D44600FD569F /* PlayerListViewController.swift in Sources */,
-				B52146382143C773005BC2FE /* PlayerViewModelFromPlayer.swift in Sources */,
+				B52146382143C773005BC2FE /* PlayerViewModel.swift in Sources */,
 				B56077D12143DE9800E7394E /* UITableViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +501,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B525DD2F2151A6AA001CF6AF /* PlayerListViewModelUnitTests.swift in Sources */,
+				B525DD312151A6B6001CF6AF /* PlayerViewModelUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z6R94W837V;
 				INFOPLIST_FILE = TeamGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -678,6 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z6R94W837V;
 				INFOPLIST_FILE = TeamGenerator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -696,6 +699,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TeamGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -705,6 +709,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leteamsoftware.TeamGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeamGenerator.app/TeamGenerator";
@@ -717,6 +722,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TeamGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

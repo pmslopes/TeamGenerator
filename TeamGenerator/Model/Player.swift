@@ -65,8 +65,4 @@ extension Player {
     func jsonDictionary() throws -> [String: Any] {
         return try JSONSerialization.jsonObject(with: jsonData(), options: []) as! [String: Any]
     }
-    
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
-        return String(data: try self.jsonData(), encoding: encoding)
-    }
 }

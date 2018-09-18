@@ -25,8 +25,10 @@ class DatabasePlayerLibrary: NSObject, PlayerLibrary {
         databaseReference.observeSingleEvent(of: .value) { (snapshot) in
             if let playerObjectList = snapshot.value as? [Any] {
                 for playerObject in playerObjectList {
-                    let player = try! Player(dictionary: playerObject as! [String : Any])
-                    self.players.append(player)
+                    if let playerJSONObject = playerObject as? [String : Any] {
+                        let player = try! Player(dictionary: playerJSONObject)
+                        self.players.append(player)
+                    }
                 }
                 completion(self.players)
             }
@@ -45,20 +47,10 @@ class DatabasePlayerLibrary: NSObject, PlayerLibrary {
         }
     }
     
-    func remove(_ player: Player) {
-        var indexToRemove: Int?
-        for index in 0...players.count-1 {
-            let currentPlayer = players[index]
-            if currentPlayer.uid == player.uid {
-                indexToRemove = index
-                break
-            }
-        }
-        
-        if let indexToRemove = indexToRemove {
-            players.remove(at: indexToRemove)
-            NotificationCenter.default.post(notification(PlayerLibraryNotifications.PlayerLibraryPlayerRemoved, player: player))
-        }
+    func remove(_ playerIndex: Int) {
+        let player = players.remove(at: playerIndex)
+        databaseReference.child(String(player.uid)).removeValue()
+        NotificationCenter.default.post(notification(PlayerLibraryNotifications.PlayerLibraryPlayerRemoved, playerIndex: playerIndex))
     }
     
     func update(_ player: Player) {
@@ -78,11 +70,15 @@ class DatabasePlayerLibrary: NSObject, PlayerLibrary {
             NotificationCenter.default.post(notification(PlayerLibraryNotifications.PlayerLibraryPlayerUpdated, player: player))
         }
     }
-    
-    
+        
     // MARK: Private
     fileprivate func notification(_ name: String, player: Player) -> Notification {
         let notification: Notification = Notification(name: Notification.Name(rawValue: name), object: self, userInfo: ["player" : player])
+        return notification
+    }
+    
+    fileprivate func notification(_ name: String, playerIndex: Int) -> Notification {
+        let notification: Notification = Notification(name: Notification.Name(rawValue: name), object: self, userInfo: ["playerIndex" : playerIndex])
         return notification
     }
 }

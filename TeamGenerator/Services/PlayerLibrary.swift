@@ -16,7 +16,7 @@ enum PlayerLibraryNotifications {
 
 protocol PlayerLibrary {
     func fetch(completion: @escaping (([Player]) -> Void))
-    func add(_ player: Player) // posts PlayerLibraryPlayerAdded notifications
-    func remove(_ player: Player) // posts PlayerLibraryPlayerRemoved notifications
+    func add(_ player: Player) // posts PlayerLibraryPlayerAdded notifications    
+    func remove(_ playerIndex: Int) // posts PlayerLibraryPlayerRemoved notifications
     func update(_ player: Player) // posts PlayerLibraryPlayerUpdated notifications
 }
