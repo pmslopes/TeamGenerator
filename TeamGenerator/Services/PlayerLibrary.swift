@@ -8,15 +8,12 @@
 
 import Foundation
 
-enum PlayerLibraryNotifications {
-    static let PlayerLibraryPlayerAdded    = "PlayerLibraryPlayerAdded"
-    static let PlayerLibraryPlayerRemoved  = "PlayerLibraryPlayerRemoved"
-    static let PlayerLibraryPlayerUpdated  = "PlayerLibraryPlayerUpdated"
-}
-
 protocol PlayerLibrary {
+    var players: [Player]? { get }
+    
     func fetch(completion: @escaping (([Player]) -> Void))
-    func add(_ player: Player) // posts PlayerLibraryPlayerAdded notifications    
-    func remove(_ playerIndex: Int) // posts PlayerLibraryPlayerRemoved notifications
-    func update(_ player: Player) // posts PlayerLibraryPlayerUpdated notifications
+    func fetch(id: Int?, completion: @escaping ((Player?) -> Void))
+    func add(_ player: Player, completion: @escaping ((Player) -> Void))
+    func remove(_ playerIndex: Int, completion: @escaping ((Player) -> Void))
+    func update(_ player: Player, completion: @escaping ((Player) -> Void))
 }

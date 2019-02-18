@@ -1,0 +1,6 @@
+framework module Pods_TeamGenerator_TeamGeneratorUITests {
+  umbrella header "Pods-TeamGenerator-TeamGeneratorUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -21,19 +21,25 @@ class PlayerListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Do any additional setup after loading the view.
         styleUI()
         fillUI()
+    }
+    
+    @IBAction func addPlayer() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        
+        let viewController = PlayerViewController()
+        viewController.viewModel = AddPlayerViewModel(numberOfPlayers: viewModel.players.value.count)
+        present(viewController, animated: true, completion: nil)
     }
     
     // MARK: Private
     fileprivate func styleUI() {        
         tableView.register(cellClass: PlayerTableViewCell.self)
     }
-    
-    @IBAction func addPlayer() {
-        viewModel?.add(name: "Test", strength: 20, belongsToClub: false)
-    }
-    
     
     fileprivate func fillUI() {
         if !isViewLoaded {
@@ -71,6 +77,18 @@ extension PlayerListViewController: UITableViewDataSource {
         if editingStyle == .delete {
             viewModel?.delete(indexPath: indexPath)
         }
+    }
+}
+
+extension PlayerListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else {
+            return
+        }
+
+        let viewController = PlayerViewController()
+        viewController.viewModel = viewModel.players.value[indexPath.row]
+        present(viewController, animated: true, completion: nil)
     }
 }
 

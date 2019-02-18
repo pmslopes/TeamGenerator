@@ -9,24 +9,32 @@
 import Foundation
 
 protocol PlayerViewModel {
-    var playerName: String { get }
-    var playerStrength: String { get }
+    var playerId: Int? { get }
+    var playerName: String { get set }
+    var playerNumber: String { get set }
+    var playerStrength: String { get set }
 }
 
 class PlayerViewModelFromPlayer: NSObject, PlayerViewModel {
-    
     // MARK: PlayerViewModel protocol
-    var playerName: String
-    var playerStrength: String
+    var playerId: Int?
+    var playerName: String = ""
+    var playerNumber: String = ""
+    var playerStrength: String = ""
+    
+    var player: Player?
     
     // MARK: Init
-    override init() {
-        playerName = ""
-        playerStrength = ""
-    }
-    
-    init(withPlayer player: Player) {
-        playerName = player.name
-        playerStrength = String(player.strength)
+    init(withPlayer player: Player?) {
+        super.init()
+        
+        self.player = player
+        
+        if let player = player {
+            playerId = player.uid
+            playerName = player.name
+            playerNumber = player.number != nil ? String(player.number!) : ""
+            playerStrength = String(player.strength)
+        }
     }
 }

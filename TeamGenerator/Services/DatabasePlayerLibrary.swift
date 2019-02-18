@@ -10,76 +10,79 @@ import Foundation
 import FirebaseDatabase
 
 class DatabasePlayerLibrary: NSObject, PlayerLibrary {
+    var players: [Player]? = []
     
-    fileprivate var players: [Player] = []
-    
-    var databaseReference: FIRDatabaseReference!
+    var databaseReference: DatabaseReference!
     
     override init() {
         super.init()
         
-        databaseReference = FIRDatabase.database().reference().child("players")
+        databaseReference = Database.database().reference().child("players")
+    }
+    
+    init(database: String) {
+        super.init()
+        
+        databaseReference = Database.database().reference().child(database)
     }
     
     func fetch(completion: @escaping (([Player]) -> Void)) {
+        players = []
+        
         databaseReference.observeSingleEvent(of: .value) { (snapshot) in
             if let playerObjectList = snapshot.value as? [Any] {
                 for playerObject in playerObjectList {
                     if let playerJSONObject = playerObject as? [String : Any] {
                         let player = try! Player(dictionary: playerJSONObject)
-                        self.players.append(player)
+                        self.players?.append(player)
                     }
                 }
-                completion(self.players)
+                completion(self.players!)
             }
         }
     }
     
-    func add(_ player: Player) {
+    func fetch(id: Int?, completion: @escaping ((Player?) -> Void)) {
+        guard let id = id else {
+            completion(nil)
+            return
+        }
+        
+        let player = players?.filter({ (player) -> Bool in
+            return player.uid == id
+        }).first
+        
+        completion(player)
+    }
+    
+    func add(_ player: Player, completion: @escaping ((Player) -> Void)) {
         do {
             let data = try player.jsonDictionary()
             databaseReference.child(String(player.uid)).setValue(data)
-            players.append(player)
-            NotificationCenter.default.post(notification(PlayerLibraryNotifications.PlayerLibraryPlayerAdded, player: player))
+            players?.append(player)
+            completion(player)
         }
         catch {
             
         }
     }
     
-    func remove(_ playerIndex: Int) {
-        let player = players.remove(at: playerIndex)
-        databaseReference.child(String(player.uid)).removeValue()
-        NotificationCenter.default.post(notification(PlayerLibraryNotifications.PlayerLibraryPlayerRemoved, playerIndex: playerIndex))
+    func remove(_ playerIndex: Int, completion: @escaping ((Player) -> Void)) {
+        if playerIndex < players!.count {
+            let player = players!.remove(at: playerIndex)
+            databaseReference.child(String(player.uid)).removeValue()
+            completion(player)
+        }
     }
     
-    func update(_ player: Player) {
-        var existingPlayer: Player?
-        for index in 0...players.count-1 {
-            let currentPlayer = players[index]
-            if currentPlayer.uid == player.uid {
-                existingPlayer = currentPlayer
-                break
-            }
+    func update(_ player: Player, completion: @escaping ((Player) -> Void)) {
+        do {
+            let data = try player.jsonDictionary()
+            databaseReference.child(String(player.uid)).setValue(data)
+            completion(player)
         }
-        
-        if var existingPlayer = existingPlayer {
-            existingPlayer.name = player.name
-            existingPlayer.strength = player.strength
+        catch {
             
-            NotificationCenter.default.post(notification(PlayerLibraryNotifications.PlayerLibraryPlayerUpdated, player: player))
         }
-    }
-        
-    // MARK: Private
-    fileprivate func notification(_ name: String, player: Player) -> Notification {
-        let notification: Notification = Notification(name: Notification.Name(rawValue: name), object: self, userInfo: ["player" : player])
-        return notification
-    }
-    
-    fileprivate func notification(_ name: String, playerIndex: Int) -> Notification {
-        let notification: Notification = Notification(name: Notification.Name(rawValue: name), object: self, userInfo: ["playerIndex" : playerIndex])
-        return notification
     }
 }
-
